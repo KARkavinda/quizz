@@ -2,6 +2,8 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useEffect} from 'react';
 import {useState} from 'react';
+import Title from './components/title';
+
 
 const shuffleArray = array => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -110,17 +112,17 @@ const Quiz = ({navigation}) => {
           </View>
 
           <View style={styles.bottom}>
-            <View>
+            {/* <View>
               <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}>skip</Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
             <View>
               {ques !== 9 && (
                 <TouchableOpacity
                   style={styles.button}
                   onPress={handleNextPress}>
-                  <Text style={styles.buttonText}>next</Text>
+                  <Text style={styles.buttonText}>skip</Text>
                 </TouchableOpacity>
               )}
               {ques === 9 && (
