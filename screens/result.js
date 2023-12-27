@@ -4,14 +4,22 @@ import Title from './components/title';
 
 const Result = ({navigation, route}) => {
   const params = route.params;
+  const {score} = route.params;
   console.log(params);
+
+  const resultBanner =
+    score > 40
+      ? 'https://cdni.iconscout.com/illustration/premium/thumb/business-victory-3142053-2617867.png?f=webp'
+      : 'https://cdni.iconscout.com/illustration/premium/preview/fail-start-up-business-8705433-7016262.png?f=webp&h=700';
+
   return (
     <View style={styles.container}>
       <Title titleText="RESULTS" />
+      <Text style={styles.scoreValue}>{score}</Text>
       <View style={styles.bannerContainer}>
         <Image
           source={{
-            uri: 'https://t3.ftcdn.net/jpg/03/45/97/36/360_F_345973621_sMifpCogXNoIDjmXlbLwx1QZA5ZmQVl8.jpg',
+            uri: resultBanner,
           }}
           style={styles.banner}
           resizeMode="contain"
@@ -20,7 +28,7 @@ const Result = ({navigation, route}) => {
       <TouchableOpacity
         onPress={() => navigation.navigate('Home')}
         style={styles.button}>
-        <Text style={styles.buttonText}>home</Text>
+        <Text style={styles.buttonText}>Go to home</Text>
       </TouchableOpacity>
     </View>
   );
@@ -55,5 +63,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     color: 'white',
+  },
+  scoreValue: {
+    fontSize: 24,
+    fontWeight: '800',
+    alignSelf: 'center',
   },
 });

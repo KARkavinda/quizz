@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useEffect} from 'react';
@@ -17,6 +18,7 @@ const Quiz = ({navigation}) => {
   const [ques, setQues] = useState(0);
   const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
+  const [isLoading, setLoading] = useState(false);
 
   const getQuiz = async () => {
     // const url = 'https://opentdb.com/api.php?amount=10&encode=url3986';
@@ -27,6 +29,7 @@ const Quiz = ({navigation}) => {
     setQuestions(data.results);
     // setOptions(data.results);
     setOptions(generateOptionsAndShuffle(data.results[0]));
+    setLoading(false)
   };
 
   useEffect(() => {
@@ -64,7 +67,8 @@ const Quiz = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      {questions && (
+      {isLoading ? (<View style={{display:'flex',justifyContent:'center',alignItems:'center'}}><Text style={{fontSize:32,fontWeight:'700'}}>loading</Text>
+      </View> ) : (questions && (
         <View style={styles.parent}>
           <View style={styles.top}>
             <Text style={styles.question}>
@@ -141,7 +145,7 @@ const Quiz = ({navigation}) => {
           </TouchableOpacity>
         </View> */}
           </View>
-        </View>
+        </View>)
       )}
     </View>
   );
