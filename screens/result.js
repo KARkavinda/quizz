@@ -1,7 +1,9 @@
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-const Result = ({navigation}) => {
+const Result = ({navigation, route}) => {
+  const params = route.params;
+  console.log(params);
   return (
     <View>
       <Text>result</Text>
@@ -15,7 +17,9 @@ const Result = ({navigation}) => {
         />
       </View>
       <View>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Home')}
+          style={styles.button}>
           <Text>home</Text>
         </TouchableOpacity>
       </View>
@@ -33,5 +37,15 @@ const styles = StyleSheet.create({
   bannerContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#800080',
+    padding: 12,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+    alignItems: 'center',
+    marginBottom: 30,
+    maxWidth: '25%',
+    alignSelf: 'center',
   },
 });
