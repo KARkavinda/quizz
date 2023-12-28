@@ -21,6 +21,7 @@ const Quiz = ({navigation}) => {
   const [isLoading, setLoading] = useState(false);
 
   const getQuiz = async () => {
+    setLoading(true)
     // const url = 'https://opentdb.com/api.php?amount=10&encode=url3986';
     const url =
       'https://opentdb.com/api.php?amount=10&type=multiple&encode=url3986';
@@ -65,9 +66,11 @@ const Quiz = ({navigation}) => {
     });
   };
 
+
   return (
     <View style={styles.container}>
-      {isLoading ? (<View style={{display:'flex',justifyContent:'center',alignItems:'center'}}><Text style={{fontSize:32,fontWeight:'700'}}>loading</Text>
+      {isLoading ? ( <View style={styles.containerLoad}>
+      <Text style={styles.text}>LOADING...</Text>
       </View> ) : (questions && (
         <View style={styles.parent}>
           <View style={styles.top}>
@@ -116,11 +119,7 @@ const Quiz = ({navigation}) => {
           </View>
 
           <View style={styles.bottom}>
-            {/* <View>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>skip</Text>
-              </TouchableOpacity>
-            </View> */}
+            
             <View>
               {ques !== 9 && (
                 <TouchableOpacity
@@ -137,13 +136,7 @@ const Quiz = ({navigation}) => {
                 </TouchableOpacity>
               )}
             </View>
-            {/* <View>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Result')}
-            style={styles.button}>
-            <Text style={styles.buttonText}> END</Text>
-          </TouchableOpacity>
-        </View> */}
+           
           </View>
         </View>)
       )}
@@ -201,5 +194,15 @@ const styles = StyleSheet.create({
   },
   parent: {
     height: '100%',
+  },
+  containerLoad: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+   
+  },
+  text: {
+    fontSize: 32,
+    fontWeight: '700',
   },
 });
